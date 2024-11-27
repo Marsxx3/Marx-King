@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Marx-King</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilo general de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo para el nombre en la esquina con más estilo y pequeño */
+        .nombre-corner {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px; /* Tamaño más pequeño */
+            color: #000000; /* Color negro */
+            font-family: 'Arial', sans-serif; /* Fuente común */
+            font-style: italic; /* Cursiva */
+            text-transform: none; /* Sin mayúsculas */
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia para destacar */
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Carrito flotante */
+        .carrito-flotante {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff5722;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .carrito-flotante:hover {
+            background-color: #ff5722;
+        }
+
+        /* Contenido del carrito */
+        .carrito {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrito h3 {
+            font-size: 36px;
+            color: #ff5722;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .total {
+            font-size: 22px;
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .total span {
+            color: #ff5722;
+        }
+
+        /* Botones */
+        button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #ff5722;
+        }
+
+        .seguir-comprando {
+            background-color: #28a745;
+        }
+
+        .seguir-comprando:hover {
+            background-color: #218838;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: #ff5722;
+            padding: 15px 0;
+            color: white;
+            text-align: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        header .logo p {
+            margin: 5px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Sección de productos */
+        #productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .producto {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 45%; /* Para que haya 2 productos por fila */
+            margin-bottom: 30px; /* Espacio entre filas */
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .producto img {
+            width: 100%;
+            border-radius: 8px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .producto h4 {
+            margin: 15px 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .producto p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .producto button {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .producto button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .producto {
+                width: 48%;
+            }
+
+            .carrito-flotante {
+                font-size: 25px;
+                padding: 12px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .producto {
+                width: 100%;
+            }
+
+            .carrito-flotante {
+                font-size: 25px;
+                padding: 12px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Marx-King</h1>
+            <p>El Sabor del Rey</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Menú</a></li>
+                <li><a href="index.html#postres">Postres</a></li>
+                <li><a href="index.html#bebidas">Bebidas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Carrito Flotante -->
+    <div class="carrito-flotante" onclick="location.href='carrito.html'">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="carritoCount">0</span> <!-- Este es el contador -->
+    </div>
+
+    <!-- Contenido del carrito -->
+    <div class="carrito">
+        <h3>Tu Pedido</h3>
+        <ul id="carritoItems">
+            <!-- Los productos se agregarán aquí dinámicamente -->
+        </ul>
+
+        <p class="total"><strong>Total:</strong> $<span id="totalPrice">0.00</span></p>
+
+        <!-- Botón para realizar el pedido -->
+        <button onclick="realizarPedido()">Realizar Pedido</button>
+        <button class="seguir-comprando" onclick="continuarCompra()">Seguir Comprando</button>
+    </div>
+
+    <!-- Nombre en la esquina con nuevo estilo -->
+    <div class="nombre-corner">
+        marszx3
+    </div>
+
+    <!-- Sección de Productos -->
+    <section id="productos">
+        <h2>Menú</h2>
+        <div class="productos">
+            <!-- Lista de hamburguesas -->
+            <div class="producto">
+                <img src="hamburguesa1.jpg" alt="Hamburguesa Clásica">
+                <h4>Hamburguesa Clásica</h4>
+                <p>$9.99</p>
+                <button onclick="agregarAlCarrito('Hamburguesa Clásica', 9.99, 'hamburguesa1.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="hamburguesa2.jpg" alt="Hamburguesa Doble">
+                <h4>Hamburguesa Doble</h4>
+                <p>$12.99</p>
+                <button onclick="agregarAlCarrito('Hamburguesa Doble', 12.99, 'hamburguesa2.jpg')">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="hamburguesa3.jpg" alt="Hamburguesa Veggie">
+                <h4>Hamburguesa Veggie</h4>
+                <p>$8.99</p>
+                <button onclick="agregarAlCarrito('Hamburguesa Veggie', 8.99, 'hamburguesa3.jpg')">Agregar al carrito</button>
+            </div>
+
+            <!-- Lista de refrescos -->
+            <div class="producto">
+                <img src="refresco1.jpg" alt="Refresco Cola">
+                <h4>Refresco Cola</h4>
+                <p>$2.50</p>
+                <button onclick="agregarAlCarrito('Refresco Cola', 2.50, 'refresco1.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="refresco2.jpg" alt="Refresco Naranja">
+                <h4>Refresco Naranja</h4>
+                <p>$2.50</p>
+                <button onclick="agregarAlCarrito('Refresco Naranja', 2.50, 'refresco2.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="refresco3.jpg" alt="Refresco Limón">
+                <h4>Refresco Limón</h4>
+                <p>$2.50</p>
+                <button onclick="agregarAlCarrito('Refresco Limón', 2.50, 'refresco3.jpg')">Agregar al carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Función para cargar los productos del carrito
+        function cargarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let carritoItems = document.getElementById('carritoItems');
+            let total = 0;
+
+            carritoItems.innerHTML = ""; // Limpiar los productos antes de cargar los nuevos
+
+            carrito.forEach(producto => {
+                let li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <strong>${producto.nombre}</strong>
+                    <span class="precio">$${producto.precio}</span>
+                `;
+                carritoItems.appendChild(li);
+                total += producto.precio; // Sumar los precios
+            });
+
+            // Mostrar el total de la compra
+            document.getElementById('totalPrice').innerText = total.toFixed(2);
+
+            // Actualizar el contador del carrito
+            actualizarContadorCarrito();
+        }
+
+        // Función para actualizar el contador del carrito
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let carritoCount = carrito.length;
+            document.getElementById('carritoCount').innerText = carritoCount; // Actualizar el contador
+        }
+
+        // Cargar el carrito al cargar la página
+        window.onload = cargarCarrito;
+
+        // Función para agregar productos al carrito
+        function agregarAlCarrito(nombre, precio, imagen) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.push({ nombre, precio, imagen });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarContadorCarrito();
+        }
+
+        // Función para realizar el pedido
+        function realizarPedido() {
+            // Vaciar el carrito
+            localStorage.removeItem('carrito');
+
+            // Actualizar el contador a 0 en la página principal
+            actualizarContadorCarrito();
+
+            // Redirigir a la página de agradecimiento
+            window.location.href = 'gracias.html'; // Redirigir a la página de gracias
+        }
+
+        // Función para continuar comprando
+        function continuarCompra() {
+            window.location.href = "index.html"; // Volver a la página de productos
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

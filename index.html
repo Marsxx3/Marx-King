@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marx-King - El Sabor del Rey</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Mantén tu archivo de estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilo para el nombre en la esquina con más estilo y pequeño */
+        .nombre-corner {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px; /* Tamaño más pequeño */
+            color: #000000; /* Color negro */
+            font-family: 'Arial', sans-serif; /* Fuente común */
+            font-style: italic; /* Cursiva */
+            text-transform: none; /* Sin mayúsculas */
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia para destacar */
+            padding: 5px;
+            border-radius: 5px;
+        }
+        /* Resto de estilos... */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .contacto-footer {
+            background-color: #222;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .contacto-footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Marx-King</h1>
+            <p>El Sabor del Rey</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#postres">Postres</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Carrito Flotante -->
+    <a href="carrito.html" class="carrito-flotante">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="carritoCount">0</span> <!-- Contador de elementos en el carrito -->
+    </a>
+
+    <!-- Sección Intro -->
+    <section id="intro" class="intro">
+        <h2>Bienvenidos a Marx-King</h2>
+        <p>¡El mejor sabor en hamburguesas, postres y refrescos!</p>
+        <button onclick="mostrarMenu()">Explora el Menú</button>
+    </section>
+
+    <!-- Sección Menú de Hamburguesas -->
+    <section id="menu" class="menu-section">
+        <h3>Hamburguesas</h3>
+        <div class="menu-items">
+            <!-- Hamburguesas (con las opciones adicionales) -->
+            <div class="menu-item">
+                <img src="hamburguesa1.jpg" alt="Hamburguesa Clásica">
+                <h4>Hamburguesa Clásica</h4>
+                <p>Carne 100% Angus, queso cheddar, lechuga, tomate y salsa especial.</p>
+                <p class="precio">$5.99</p>
+                <button onclick="añadirAlCarrito('Hamburguesa Clásica', 5.99, 'hamburguesa1.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="hamburguesa2.jpg" alt="Hamburguesa Hawaiana">
+                <h4>Hamburguesa Hawaiana</h4>
+                <p>Carne 100% Angus, piña asada, queso suizo y mayonesa.</p>
+                <p class="precio">$6.49</p>
+                <button onclick="añadirAlCarrito('Hamburguesa Hawaiana', 6.49, 'hamburguesa2.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="hamburguesa3.jpg" alt="Hamburguesa Double Cheese">
+                <h4>Hamburguesa Double Cheese</h4>
+                <p>Carne Angus doble, queso cheddar y cebolla caramelizada.</p>
+                <p class="precio">$7.29</p>
+                <button onclick="añadirAlCarrito('Hamburguesa Double Cheese', 7.29, 'hamburguesa3.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="hamburguesa4.jpg" alt="Hamburguesa King Size">
+                <h4>Hamburguesa King Size</h4>
+                <p>Carne 100% Angus, doble queso, bacon crujiente y salsa BBQ.</p>
+                <p class="precio">$8.49</p>
+                <button onclick="añadirAlCarrito('Hamburguesa King Size', 8.49, 'hamburguesa4.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="hamburguesa5.jpg" alt="Hamburguesa Mexicana">
+                <h4>Hamburguesa Mexicana</h4>
+                <p>Carne Angus, guacamole, jalapeños, cebolla morada y queso Monterrey Jack.</p>
+                <p class="precio">$7.99</p>
+                <button onclick="añadirAlCarrito('Hamburguesa Mexicana', 7.99, 'hamburguesa5.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="hamburguesa6.jpg" alt="Hamburguesa Doble Bacon">
+                <h4>Hamburguesa Doble Bacon</h4>
+                <p>Carne Angus, doble bacon crujiente, queso cheddar y salsa especial.</p>
+                <p class="precio">$7.99</p>
+                <button onclick="añadirAlCarrito('Hamburguesa Doble Bacon', 7.99, 'hamburguesa6.jpg')">Seleccionar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Postres -->
+    <section id="postres" class="postres-section">
+        <h3>Postres Deliciosos</h3>
+        <div class="menu-items">
+            <!-- Postres (con más opciones) -->
+            <div class="menu-item">
+                <img src="postre1.jpg" alt="Sundae de Chocolate">
+                <h4>Sundae de Chocolate</h4>
+                <p>Helado de chocolate con topping de cacao.</p>
+                <p class="precio">$3.49</p>
+                <button onclick="añadirAlCarrito('Sundae de Chocolate', 3.49, 'postre1.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="postre2.jpg" alt="Tarta de Manzana">
+                <h4>Tarta de Manzana</h4>
+                <p>Deliciosa tarta de manzana con una capa crujiente.</p>
+                <p class="precio">$4.29</p>
+                <button onclick="añadirAlCarrito('Tarta de Manzana', 4.29, 'postre2.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="postre3.jpg" alt="Tarta de Limón">
+                <h4>Tarta de Limón</h4>
+                <p>Refrescante tarta de limón con una base crujiente.</p>
+                <p class="precio">$3.99</p>
+                <button onclick="añadirAlCarrito('Tarta de Limón', 3.99, 'postre3.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="postre4.jpg" alt="Brownie con Helado">
+                <h4>Brownie con Helado</h4>
+                <p>Un delicioso brownie con una bola de helado de vainilla.</p>
+                <p class="precio">$4.49</p>
+                <button onclick="añadirAlCarrito('Brownie con Helado', 4.49, 'postre4.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="postre5.jpg" alt="Cheesecake de Fresa">
+                <h4>Cheesecake de Fresa</h4>
+                <p>Suave cheesecake con un toque de fresa fresca.</p>
+                <p class="precio">$5.49</p>
+                <button onclick="añadirAlCarrito('Cheesecake de Fresa', 5.49, 'postre5.jpg')">Seleccionar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Bebidas -->
+    <section id="bebidas" class="bebidas-section">
+        <h3>Bebidas Refrescantes</h3>
+        <div class="menu-items">
+            <!-- Bebidas (más opciones añadidas) -->
+            <div class="menu-item">
+                <img src="bebida1.jpg" alt="Refresco Cola">
+                <h4>Refresco Cola</h4>
+                <p>El clásico refresco cola en su versión más refrescante.</p>
+                <p class="precio">$1.99</p>
+                <button onclick="añadirAlCarrito('Refresco Cola', 1.99, 'bebida1.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="bebida2.jpg" alt="Jugo de Naranja">
+                <h4>Jugo de Naranja</h4>
+                <p>Jugo natural de naranja recién exprimido.</p>
+                <p class="precio">$2.49</p>
+                <button onclick="añadirAlCarrito('Jugo de Naranja', 2.49, 'bebida2.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="bebida3.jpg" alt="Agua Mineral">
+                <h4>Agua Mineral</h4>
+                <p>Refrescante agua mineral para acompañar tu comida.</p>
+                <p class="precio">$1.29</p>
+                <button onclick="añadirAlCarrito('Agua Mineral', 1.29, 'bebida3.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="bebida4.jpg" alt="Refresco Naranja">
+                <h4>Refresco Naranja</h4>
+                <p>Un refresco con un toque de naranja refrescante.</p>
+                <p class="precio">$2.19</p>
+                <button onclick="añadirAlCarrito('Refresco Naranja', 2.19, 'bebida4.jpg')">Seleccionar</button>
+            </div>
+            <div class="menu-item">
+                <img src="bebida5.jpg" alt="Té Helado">
+                <h4>Té Helado</h4>
+                <p>Refrescante té helado con un toque de limón.</p>
+                <p class="precio">$2.99</p>
+                <button onclick="añadirAlCarrito('Té Helado', 2.99, 'bebida5.jpg')">Seleccionar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Marx-King. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="contacto-footer">
+        <p>Contáctanos al: <strong>123-456-789</strong></p>
+        <p><a href="mailto:contacto@marxking.com">Envíanos un correo</a></p>
+    </div>
+
+    <script>
+        let carrito = [];
+
+        function añadirAlCarrito(nombre, precio, imagen) {
+            carrito.push({nombre, precio, imagen});
+            document.getElementById('carritoCount').innerText = carrito.length;
+        }
+
+        function mostrarMenu() {
+            window.scrollTo({
+                top: document.getElementById('menu').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

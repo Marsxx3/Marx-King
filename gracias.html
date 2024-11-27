@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias por Comprar - Marx-King</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilo general de la página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Estilo para la página de gracias */
+        .gracias-page {
+            background-color: #ff5722; /* Coincide con el color del índice */
+            color: white;
+            text-align: center;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            margin: 50px auto;
+            max-width: 600px;
+        }
+
+        .gracias-page h2 {
+            font-size: 36px;
+        }
+
+        .gracias-page p {
+            font-size: 18px;
+        }
+
+        .gracias-page button {
+            background-color: #ff5722; /* Mismo color que en el índice */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gracias-page button:hover {
+            background-color: #ff5722; /* Similar al color al pasar el cursor */
+        }
+
+        /* Carrito flotante con el mismo estilo que en el resto de la página */
+        .carrito-flotante {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff5722; /* Coincide con el color del índice */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .carrito-flotante span {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        /* Nombre en la esquina */
+        .nombre-corner {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #000000;
+            font-family: 'Arial', sans-serif;
+            font-style: italic;
+            text-transform: none;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Estilo para el encabezado */
+        header {
+            background-color: #ff5722; /* Coincide con el color de la página principal */
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 40px;
+            color: white;
+        }
+
+        header p {
+            font-size: 18px;
+            color: white;
+        }
+
+        /* Estilo para los enlaces */
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Carrito Flotante -->
+    <a href="carrito.html" class="carrito-flotante">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="carritoCount">0</span> <!-- Contador de elementos en el carrito -->
+    </a>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="logo">
+            <h1>Marx-King</h1>
+            <p>El Sabor del Rey</p>
+        </div>
+    </header>
+
+    <!-- Página de Gracias -->
+    <div class="gracias-page">
+        <h2>¡Gracias por tu compra en Marx-King!</h2>
+        <p>Tu pedido ha sido recibido con éxito.</p>
+        <p>Nos complace que hayas elegido nuestros productos, pronto disfrutarás de tus deliciosas hamburguesas y más.</p>
+        <button onclick="window.location.href = 'index.html';">Volver al Menú</button>
+    </div>
+
+    <!-- Nombre en la esquina -->
+    <div class="nombre-corner">
+        marszx3
+    </div>
+    
+    <script>
+        // Función para actualizar el contador del carrito
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            document.getElementById('carritoCount').innerText = carrito.length;
+        }
+
+        // Actualizar el contador de carrito al cargar la página
+        window.onload = actualizarContadorCarrito;
+    </script>
+</body>
+</html>
+
+
+
+
